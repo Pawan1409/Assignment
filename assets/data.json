@@ -1,0 +1,71 @@
+[
+    {
+        "text": "Electronics",
+        "children": [
+            {
+                "href": "#",
+                "text": "Mobiles"
+            },
+            {
+                "href": "#",
+                "text": "Laptops"
+            },
+            {
+                "href": "#",
+                "text": "Televisions"
+            }
+        ]
+    },
+    {
+        "text": "Men's Fashion",
+        "children": [
+            {
+                "href": "#",
+                "text": "Shirts"
+            },
+            {
+                "href": "#",
+                "text": "T-Shirts"
+            }
+            ,
+            {
+                "href": "#",
+                "text": "Trousers"
+            },
+            {
+                "href": "#",
+                "text": "Jeans"
+            },
+            {
+                "href": "#",
+                "text": "Jackets"
+            }
+        ]
+    },
+    {
+        "text": "Women's Fashion",
+        "children": [
+            {
+                "href": "#",
+                "text": "Shirts"
+            },
+            {
+                "href": "#",
+                "text": "T-Shirts"
+            }
+            ,
+            {
+                "href": "#",
+                "text": "Trousers"
+            },
+            {
+                "href": "#",
+                "text": "Jeans"
+            },
+            {
+                "href": "#",
+                "text": "Jackets"
+            }
+        ]
+    }
+]
