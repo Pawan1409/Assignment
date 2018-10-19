@@ -17,7 +17,7 @@
         ]
     },
     {
-        "text": "Men's Fashion",
+        "text": "Fashion",
         "children": [
             {
                 "href": "#",
@@ -43,28 +43,20 @@
         ]
     },
     {
-        "text": "Women's Fashion",
+        "text": "Kitchenware",
         "children": [
             {
                 "href": "#",
-                "text": "Shirts"
+                "text": "Pan"
             },
             {
                 "href": "#",
-                "text": "T-Shirts"
+                "text": "Cooker"
             }
             ,
             {
                 "href": "#",
-                "text": "Trousers"
-            },
-            {
-                "href": "#",
-                "text": "Jeans"
-            },
-            {
-                "href": "#",
-                "text": "Jackets"
+                "text": "Induction"
             }
         ]
     }

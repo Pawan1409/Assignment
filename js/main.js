@@ -2,15 +2,27 @@ $(document).ready(function(){
     $("#filters").hide();
     $("#products").hide();
 
-
     var arrCategories;
     $.getJSON("/assets/data.json", function (data) {
         arrCategories = data;
         $('#mainMenu').renderizeMenu(arrCategories, { rootClass: "nav navbar-nav mr-auto", ulParentClass: "dropdown-menu", dropdownIcon: '<span class="caret"></span>' });
         jQuery.SmartMenus.Bootstrap.init();
     })
-    showSlides();
+    //showSlides();
 })
+
+
+//Event handler for click event on Navigation Bar
+$('#mainMenu').on('click','li', function(e,item) {
+    var itemIndex = $(this);
+    var itemType=itemIndex.context.id;
+    console.log(e);
+    $("#filters").show();
+    $("#products").show();
+    document.getElementById("filters").innerHTML= itemType+" filters";
+    document.getElementById("products").innerHTML= itemType+" products";
+    return false;
+});
 
 // When the user scrolls the page, execute Function
 window.onscroll = function() {fixHeader()};
@@ -31,17 +43,17 @@ function fixHeader() {
     }
 }
 
-//Slideshow
-var slideIndex=0;
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}
-    slides[slideIndex-1].style.display = "block";
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
+////Slideshow
+//var slideIndex=0;
+//function showSlides() {
+//    var i;
+//    var slides = document.getElementsByClassName("mySlides");
+//    for (i = 0; i < slides.length; i++) {
+//        slides[i].style.display = "none";
+//    }
+//    slideIndex++;
+//    if (slideIndex > slides.length) {slideIndex = 1}
+//    slides[slideIndex-1].style.display = "block";
+//    setTimeout(showSlides, 2000); // Change image every 2 seconds
+//}
 
