@@ -21,6 +21,15 @@ $('#mainMenu').on('click','li', function(e,item) {
     $("#products").show();
     document.getElementById("filters").innerHTML= itemType+" filters";
     document.getElementById("products").innerHTML= itemType+" products";
+    $.getJSON("/assets/products.json",function(data){
+        for(d of data){
+            if(d.category==itemType){
+                $("#products").append(`<div>
+                    ${d.name}
+                </div>`);
+            }
+        }
+    })
     return false;
 });
 

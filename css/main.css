@@ -12,6 +12,10 @@
         height: 150px;
     }
 
+/* CSS for margin between filters and products */
+    #filters{
+        margin-right: 8%;
+    }
 
 /* CSS For SLideshow    */
     * {box-sizing:border-box}
