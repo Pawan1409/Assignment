@@ -2,8 +2,23 @@
     .sticky {
         position: fixed;
         top: 0;
-        width: 100%
+        width: 100%;
     }
+
+    .overlapping{
+        position: absolute;
+        padding-top: 60px;
+        margin-left: 89.5px;
+        margin-right: 89.5px;
+        z-index: -1;
+    }
+
+/*
+    .filter{
+        position: relative;
+        padding-top: 60px;
+    }
+*/
 
 /* CSS for logo    */
 
@@ -15,6 +30,27 @@
 /* CSS for margin between filters and products */
     #filters{
         margin-right: 8%;
+    }
+
+/* Image Containers*/
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 5px;
+    }
+
+/* Clear floats after image containers */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+/* Responsiveness for images*/
+    @media screen and (max-width: 500px) {
+      .column {
+        width: 100%;
+      }
     }
 
 /* CSS For SLideshow    */

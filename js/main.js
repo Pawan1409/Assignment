@@ -24,9 +24,14 @@ $('#mainMenu').on('click','li', function(e,item) {
     $.getJSON("/assets/products.json",function(data){
         for(d of data){
             if(d.category==itemType){
-                $("#products").append(`<div>
-                    ${d.name}
-                </div>`);
+                $("#products").append(`
+                    <div class="row">
+                        <div class="column">
+                            <img src="${d.image}" alt="${d.name}" style="width:100%">
+                            <h4>${d.name}</h4>
+                        </div>
+                    </div>
+                `);
             }
         }
     })
@@ -38,6 +43,8 @@ window.onscroll = function() {fixHeader()};
 
 // Get the header
 var header = document.getElementById("mainNavbar");
+var content= document.getElementById("mainContent");
+var filter= document.getElementById("filters");
 
 // Get the offset position of the navbar
 var sticky = header.offsetTop;
@@ -46,9 +53,13 @@ var sticky = header.offsetTop;
 function fixHeader() {
     if (window.pageYOffset > sticky) {
         header.classList.add("sticky");
+        content.classList.add("overlapping");
+        filter.classList.add("filter");
     }
     else {
         header.classList.remove("sticky");
+        content.classList.remove("overlapping");
+        filter.classList.remove("filter");
     }
 }
 
