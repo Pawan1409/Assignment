@@ -1,3 +1,10 @@
+var currentItems = [];
+var cartItems = [];
+var wishlistItems = [];
+var displayModal = document.getElementById("displayItem");
+var closeModal = document.getElementsByClassName("close")[0];
+
+
 $(document).ready(function(){
     $("#filters").hide();
     $("#products").hide();
@@ -14,29 +21,89 @@ $(document).ready(function(){
 
 //Event handler for click event on Navigation Bar
 $('#mainMenu').on('click','li', function(e,item) {
+    $("#filters div").empty();
+    $("#products div").empty();
     var itemIndex = $(this);
     var itemType=itemIndex.context.id;
     console.log(e);
     $("#filters").show();
     $("#products").show();
-    document.getElementById("filters").innerHTML= itemType+" filters";
-    document.getElementById("products").innerHTML= itemType+" products";
+    $("#products").append(`
+        <div class="row" id="productImage">
+        </div>
+    `)
+//    document.getElementById("filters").appendChild= itemType+" filters";
+//    document.getElementById("products").appendChild= itemType+" products";
     $.getJSON("/assets/products.json",function(data){
         for(d of data){
             if(d.category==itemType){
-                $("#products").append(`
-                    <div class="row">
-                        <div class="column">
+                currentItems.push(d);
+                $("#productImage").append(`
+                        <div class="column card">
                             <img src="${d.image}" alt="${d.name}" style="width:100%">
-                            <h4>${d.name}</h4>
+                            <center>
+                                <p class="price">Rs. ${d.price}</p>
+                                <p>${d.name}</p>
+                                <p>
+                                    <button onclick="addToCart(${d.id})">Add To Cart</button>
+                                    <button onclick="addToWishlist(${d.id})">Add To Wishlist</button>
+                                </p>
+                                <p>
+                                    <button onclick="itemDesc(${d.id})">Click here for description</button>
+                                </p>
+                            </center>
                         </div>
-                    </div>
                 `);
             }
         }
     })
     return false;
 });
+
+function addToCart(itemId){
+    console.log(itemId);
+    for(d of currentItems){
+        if(d.id == itemId){
+            cartItems.push(d)
+        }
+    }
+    console.log(cartItems);
+}
+
+function addToWishlist(itemId){
+    console.log(itemId);
+    for(d of currentItems){
+        if(d.id == itemId){
+            wishlistItems.push(d)
+        }
+    }
+    console.log(wishlistItems);
+}
+
+function itemDesc(itemId){
+    $("#itemContent p").empty();
+    var displayItem;
+    for(d of currentItems){
+        if(d.id == itemId){
+            displayItem=d;
+        }
+    }
+    $("#itemContent").append(`
+        <div>
+            <p>
+                <img src="${displayItem.image}" alt="${displayItem.name}" width=50% style="float: right;">
+                <h1>${displayItem.name}</h1>
+
+            </p>
+        </div>
+    `)
+    displayModal.style.display = "block";
+}
+
+
+closeModal.onclick = function() {
+    displayModal.style.display = "none";
+}
 
 // When the user scrolls the page, execute Function
 window.onscroll = function() {fixHeader()};
