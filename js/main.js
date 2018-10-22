@@ -3,12 +3,17 @@ var cartItems = [];
 var wishlistItems = [];
 var displayModal = document.getElementById("displayItem");
 var closeModal = document.getElementsByClassName("close")[0];
+//var wishlistCount = document.getElementById("wishlistCount");
+//var cartCount = document.getElementById("cartCount");
+var wishlist=0;
+var cart=0;
 
-
+//when documents get loaded
 $(document).ready(function(){
     $("#filters").hide();
     $("#products").hide();
-
+    $("#cart").hide();
+    $("wishlist").hide();
     var arrCategories;
     $.getJSON("/assets/data.json", function (data) {
         arrCategories = data;
@@ -26,8 +31,11 @@ $('#mainMenu').on('click','li', function(e,item) {
     var itemIndex = $(this);
     var itemType=itemIndex.context.id;
     console.log(e);
+//    $("#slideshow").hide();
     $("#filters").show();
     $("#products").show();
+    $("#cart").hide();
+    $("#wishlist").hide();
     $("#products").append(`
         <div class="row" id="productImage">
         </div>
@@ -60,6 +68,34 @@ $('#mainMenu').on('click','li', function(e,item) {
     return false;
 });
 
+
+//function to update cart items count
+function updateCartCount(){
+    if(cart!=0){
+        $('.cart').remove();
+        $('#cartCount').append(`
+            <span class="badge cart">${cart}</span>
+        `)
+    }
+    else
+        $('.cart').remove();
+}
+
+
+//function to update wishlist items count
+function updateWishlistCount(){
+    if(wishlist!=0){
+        $('.wishlist').remove();
+        $('#wishlistCount').append(`
+        <span class="badge wishlist">${wishlist}</span>
+    `)
+    }
+    else
+        $('.wishlist').remove();
+}
+
+
+//function to add product in cart
 function addToCart(itemId){
     console.log(itemId);
     for(d of currentItems){
@@ -67,9 +103,12 @@ function addToCart(itemId){
             cartItems.push(d)
         }
     }
+    cart++;
     console.log(cartItems);
+    updateCartCount();
 }
 
+//function to add product in wishlist
 function addToWishlist(itemId){
     console.log(itemId);
     for(d of currentItems){
@@ -78,6 +117,8 @@ function addToWishlist(itemId){
         }
     }
     console.log(wishlistItems);
+    wishlist++;
+    updateWishlistCount();
 }
 
 function itemDesc(itemId){
@@ -105,6 +146,103 @@ closeModal.onclick = function() {
     displayModal.style.display = "none";
 }
 
+
+//function to display cart
+
+function showCart(){
+    $("#cart").empty();
+//    $("#slideshow").hide();
+    $("#filters").hide();
+    $("#products").hide();
+    $("#wishlist").hide();
+    $("#cart").show();
+    if(cartItems.length==0){
+        $("#cart").append(`
+            <p>Ooops! Your cart is empty...</p>
+            <h4>Go and get some items in cart</h4>
+            <button><a href="index.html">Go back to home</button>
+        `)
+    }
+    else{
+        for(d of cartItems){
+        $("#cart").append(`
+            <div class="col-lg-4">
+                <img src="${d.image}" alt="${d.name}" style="width:100%">
+                <center>
+                    <p class="price">Rs. ${d.price}</p>
+                    <p>${d.name}</p>
+                    <p>
+                        <button onclick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</button>
+                    </p>
+                </center>
+            </div>
+        `)
+        }
+    }
+}
+
+//function to show wishlist
+function showWishlist(){
+    console.log(wishlistItems)
+//    $("#wishlist").empty();
+    $("#slideshow").hide();
+    $("#filters").hide();
+    $("#products").hide();
+    $("#cart").hide();
+    $("#wishlist").show();
+    if(wishlistItems.length==0){
+        $("#wishlist").append(`
+            <p>Ooops! Your wishlist is empty...</p>
+            <h4>Go and get some items in wishlist</h4>
+            <a href="index.html"><button>Go back to home</button></a>
+        `)
+    }
+    else{
+        for(d of wishlistItems){
+        $("#wishlist").append(`
+            <div class="col-lg-4">
+                <img src="${d.image}" alt="${d.name}" style="width:100%">
+                <center>
+                    <p class="price">Rs. ${d.price}</p>
+                    <p>${d.name}</p>
+                    <p>
+                        <button onclick="removeProductWishlist(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</button>
+                    </p>
+                </center>
+            </div>
+        `)
+        }
+    }
+}
+
+
+
+//function to remove product from cart
+function removeProductCart(itemId){
+    for(i=0;i<cartItems.length;i++){
+        if(cartItems[i].id==itemId){
+            cartItems.splice(i,1);
+        }
+    }
+    cart--;
+    console.log(cartItems);
+    updateCartCount();
+    showCart();
+}
+
+//function to remove product from wishlist
+function removeProductWishlist(itemId){
+    for(i=0;i<wishlistItems.length;i++){
+        if(wishlistItems[i].id==itemId){
+            wishlistItems.splice(i,1);
+        }
+    }
+    wishlist--;
+    console.log(wishlistItems);
+    updateWishlistCount();
+    showWishlist();
+}
+
 // When the user scrolls the page, execute Function
 window.onscroll = function() {fixHeader()};
 
@@ -129,18 +267,4 @@ function fixHeader() {
         filter.classList.remove("filter");
     }
 }
-
-////Slideshow
-//var slideIndex=0;
-//function showSlides() {
-//    var i;
-//    var slides = document.getElementsByClassName("mySlides");
-//    for (i = 0; i < slides.length; i++) {
-//        slides[i].style.display = "none";
-//    }
-//    slideIndex++;
-//    if (slideIndex > slides.length) {slideIndex = 1}
-//    slides[slideIndex-1].style.display = "block";
-//    setTimeout(showSlides, 2000); // Change image every 2 seconds
-//}
 

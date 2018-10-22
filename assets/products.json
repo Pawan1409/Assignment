@@ -2,7 +2,7 @@
     {
         "id": 2001,
         "category":"Laptops",
-        "name": "Dell Inspiron 15 3000 Core i3 6th Gen",
+        "name": "Dell Inspiron 15 3000 Core i3",
         "brand":"DELL",
         "RAM": 4,
         "image": "/assets/dell.jpg",
@@ -13,7 +13,7 @@
     {
         "id": 2002,
         "category":"Laptops",
-        "name": "Dell Vostro 15 3000 Core i5 8th Gen",
+        "name": "Dell Vostro 15 3000 Core i5",
         "brand":"DELL",
         "RAM": 8,
         "image": "/assets/dell.jpg",
@@ -24,7 +24,7 @@
     {
         "id": 2003,
         "category":"Laptops",
-        "name": "Dell Inspiron 14 3000 Core i3 7th Gen",
+        "name": "Dell Inspiron 14 3000 Core i3",
         "brand":"Dell",
         "RAM": 4,
         "image": "/assets/dell.jpg",
@@ -35,7 +35,7 @@
     {
         "id": 2004,
         "category":"Laptops",
-        "name": "Dell Inspriron 15 5000 ryzen 5 Quad Core",
+        "name": "Dell Inspriron 15 5000 ryzen 5",
         "brand":"DELL",
         "RAM": 8,
         "image": "/assets/dell.jpg",
@@ -79,7 +79,7 @@
     {
         "id": 2008,
         "category":"Laptops",
-        "name": "HP Pavilion x360 Core i3 8th Gen",
+        "name": "HP Pavilion x360 Core i3",
         "brand":"HP",
         "RAM": 4,
         "image": "/assets/dell.jpg",
@@ -90,7 +90,7 @@
     {
         "id": 2009,
         "category":"Laptops",
-        "name": "Asus ZenBook Pro 15 Core i7 8th Gen",
+        "name": "Asus ZenBook Pro 15 Core i7",
         "brand":"ASUS",
         "RAM": 16,
         "image": "/assets/dell.jpg",
@@ -101,7 +101,7 @@
     {
         "id": 2010,
         "category":"Laptops",
-        "name": "Asus ROG Core i7 7th Gen",
+        "name": "Asus ROG Core i7",
         "brand":"ASUS",
         "RAM": 8,
         "image": "/assets/dell.jpg",
@@ -115,7 +115,7 @@
         "name": "SAMSUNG GALAXY S8",
         "brand":"SAMSUNG",
         "RAM": 4,
-        "image": "samsung-galaxy-s8.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 45990,
         "description": "64 GB ROM, 12 + 8 MP Camera 3000mAh Battery"
     },
@@ -125,7 +125,7 @@
         "name": "SAMSUNG GALAXY A7",
         "brand":"SAMSUNG",
         "RAM": 4,
-        "image": "samsung-galaxy-a7.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 23990,
         "description": "64 GB ROM, 24 + 5 + 8 MP Camera 3300mAh Battery"
     },
@@ -135,7 +135,7 @@
         "name": "SAMSUNG GALAXY On Nxt",
         "brand":"SAMSUNG",
         "RAM": 3,
-        "image": "galaxy-on-nxt-32.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 12900,
         "description": "64 GB ROM, 13 + 8 MP Camera 3300mAh Battery"
     },
@@ -145,7 +145,7 @@
         "name": "SAMSUNG GALAXY J3 Pro",
         "brand":"SAMSUNG",
         "RAM": 2,
-        "image": "samsung-galaxy-j3-pro.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 7490,
         "description": "16 GB ROM, 8 + 5 MP Camera 2600mAh Battery"
     },
@@ -155,7 +155,7 @@
         "name": "Redmi 6",
         "brand":"Mi",
         "RAM": 3,
-        "image": "mi-redmi-6.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 7999,
         "description": "32 GB ROM, 12 + 5 + 5 MP Camera 3000mAh Battery"
     },
@@ -165,7 +165,7 @@
         "name": "Redmi Note 5 Pro",
         "brand":"Mi",
         "RAM": 4,
-        "image": "redmi-note-5-pro.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 14999,
         "description": "64 GB ROM, 12 + 5 + 20 MP Camera 4000mAh Battery"
     },
@@ -175,7 +175,7 @@
         "name": "Mi A1",
         "brand":"Mi",
         "RAM": 4,
-        "image": "mi-mi-a1.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 14198,
         "description": "64 GB ROM, 12 + 5+ 5 MP Camera 3000mAh Battery"
     },
@@ -185,7 +185,7 @@
         "name": "Mi Mix 2",
         "brand":"Mi",
         "RAM": 6,
-        "image": "mi-mi-mix-2.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 29999,
         "description": "64 GB ROM, 12 + 5 MP Camera 3400mAh Battery"
     },
@@ -195,7 +195,7 @@
         "name": "Nokia 8 Sirocco",
         "brand":"NOKIA",
         "RAM": 6,
-        "image": "nokia-8-sirocco.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 49500,
         "description": "128 GB ROM, 12 + 13 + 5 MP Camera 3260mAh Battery"
     },
@@ -205,7 +205,7 @@
         "name": "Nokia 8",
         "brand":"NOKIA",
         "RAM": 4,
-        "image": "nokia-8.jpg",
+        "image": "/assets/mobile.jpg",
         "price": 35999,
         "description": "64 GB ROM, 13 + 13 MP Camera 3000mAh Battery"
     }
