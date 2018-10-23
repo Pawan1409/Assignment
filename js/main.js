@@ -1,4 +1,6 @@
 var currentItems = [];
+var mainCat = [];
+var subCat = [];
 var cartItems = [];
 var wishlistItems = [];
 var displayModal = document.getElementById("displayItem");
@@ -7,6 +9,8 @@ var closeModal = document.getElementsByClassName("close")[0];
 //var cartCount = document.getElementById("cartCount");
 var wishlist=0;
 var cart=0;
+var btnContent;
+
 
 //when documents get loaded
 $(document).ready(function(){
@@ -17,56 +21,69 @@ $(document).ready(function(){
     var arrCategories;
     $.getJSON("/assets/data.json", function (data) {
         arrCategories = data;
+        for(d of arrCategories){
+            mainCat.push(d.text);
+        }
         $('#mainMenu').renderizeMenu(arrCategories, { rootClass: "nav navbar-nav mr-auto", ulParentClass: "dropdown-menu", dropdownIcon: '<span class="caret"></span>' });
         jQuery.SmartMenus.Bootstrap.init();
     })
-    //showSlides();
 })
 
 
 //Event handler for click event on Navigation Bar
 $('#mainMenu').on('click','li', function(e,item) {
-    $("#filters div").empty();
+    $("#filters").empty();
     $("#products div").empty();
     var itemIndex = $(this);
     var itemType=itemIndex.context.id;
     console.log(e);
 //    $("#slideshow").hide();
-    $("#filters").show();
-    $("#products").show();
-    $("#cart").hide();
-    $("#wishlist").hide();
-    $("#products").append(`
-        <div class="row" id="productImage">
-        </div>
-    `)
-//    document.getElementById("filters").appendChild= itemType+" filters";
-//    document.getElementById("products").appendChild= itemType+" products";
-    $.getJSON("/assets/products.json",function(data){
-        for(d of data){
-            if(d.category==itemType){
-                currentItems.push(d);
-                $("#productImage").append(`
-                        <div class="column card">
-                            <img src="${d.image}" alt="${d.name}" style="width:100%">
-                            <center>
-                                <p class="price">Rs. ${d.price}</p>
-                                <p>${d.name}</p>
-                                <p>
-                                    <button onclick="addToCart(${d.id})">Add To Cart</button>
-                                    <button onclick="addToWishlist(${d.id})">Add To Wishlist</button>
-                                </p>
-                                <p>
-                                    <button onclick="itemDesc(${d.id})">Click here for description</button>
-                                </p>
-                            </center>
-                        </div>
-                `);
-            }
+    if(!mainCat.includes(itemType)){
+        $("#filters").show();
+        $("#products").show();
+        $("#cart").hide();
+        $("#wishlist").hide();
+        $("#filters").append(`
+            <p>${itemType} filters</p>
+        `)
+        $("#products").append(`
+            <div class="row" id="productImage">
+            </div>
+        `)
+    //    document.getElementById("filters").appendChild= itemType+" filters";
+    //    document.getElementById("products").appendChild= itemType+" products";
+        $.getJSON("/assets/products.json",function(data){
+            for(d of data){
+                btnContent = " Add To Cart";
+                if(d.category==itemType){
+                    currentItems.push(d);
+                    for(i=0;i<cartItems.length;i++){
+                        if(cartItems[i].id==d.id){
+                            btnContent="Added";
+                            break;
+                        }
+                    }
+                    $("#productImage").append(`
+                            <div class="column card">
+                                <img src="${d.image}" alt="${d.name}" style="width:100%">
+                                <center>
+                                    <p class="price">Rs. ${d.price}</p>
+                                    <p>${d.name}</p>
+                                    <p>
+                                        <button onclick="addToCart(${d.id})">${btnContent}</button>
+                                        <button onclick="addToWishlist(${d.id})">Add To Wishlist</button>
+                                    </p>
+                                    <p>
+                                        <button onclick="itemDesc(${d.id})">Click here for description</button>
+                                    </p>
+                                </center>
+                            </div>
+                    `);
+                }
         }
     })
     return false;
-});
+}});
 
 
 //function to update cart items count
@@ -97,48 +114,73 @@ function updateWishlistCount(){
 
 //function to add product in cart
 function addToCart(itemId){
+    var item;
+    var flag=true;
     console.log(itemId);
     for(d of currentItems){
         if(d.id == itemId){
-            cartItems.push(d)
+            item=d
         }
     }
-    cart++;
-    console.log(cartItems);
-    updateCartCount();
+    for(d of cartItems){
+        if(d.id==item.id){
+            alert("Product already in cart !!!!")
+            flag=false;
+        }
+    }
+    if(flag==true){
+        cartItems.push(item);
+        cart++;
+        console.log(cartItems);
+        updateCartCount();
+    }
 }
 
 //function to add product in wishlist
 function addToWishlist(itemId){
+    var item;
+    var flag=true;
     console.log(itemId);
     for(d of currentItems){
         if(d.id == itemId){
-            wishlistItems.push(d)
+            item=d
         }
     }
-    console.log(wishlistItems);
-    wishlist++;
-    updateWishlistCount();
+    for(d of wishlistItems){
+        if(d.id==item.id){
+            alert("Product already in your wishlist !!!!")
+            flag=false;
+        }
+    }
+    if(flag==true){
+        wishlistItems.push(item);
+        wishlist++;
+        console.log(wishlistItems);
+        updateWishlistCount();
+    }
 }
 
 function itemDesc(itemId){
-    $("#itemContent p").empty();
+    //$("#itemContent p").empty();
     var displayItem;
     for(d of currentItems){
         if(d.id == itemId){
             displayItem=d;
         }
     }
-    $("#itemContent").append(`
-        <div>
-            <p>
-                <img src="${displayItem.image}" alt="${displayItem.name}" width=50% style="float: right;">
-                <h1>${displayItem.name}</h1>
-
-            </p>
-        </div>
+    $(".modal-header").append(`
+        <h2>${displayItem.name}</h2>
     `)
-    displayModal.style.display = "block";
+    $(".modal-body").append(`
+        <img src="${displayItem.image}">
+        <p>${displayItem.description}</p>
+    `)
+    $(".modal-footer").append(`
+        <button class="btn btn-default btn-default pull-left" onclick="addToCart(${displayItem.id})"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
+
+        <button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+    `)
+    $("#itemModal").show();
 }
 
 
@@ -164,28 +206,37 @@ function showCart(){
         `)
     }
     else{
+        var totalPrice=0;
         for(d of cartItems){
-        $("#cart").append(`
-            <div class="col-lg-4">
+            totalPrice=totalPrice+d.price;
+            $("#cart").append(`
+            <div class="card-item col-lg-4">
                 <img src="${d.image}" alt="${d.name}" style="width:100%">
                 <center>
                     <p class="price">Rs. ${d.price}</p>
                     <p>${d.name}</p>
                     <p>
-                        <button onclick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</button>
+                        <button class="btn btn-danger" onclick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</button>
                     </p>
                 </center>
             </div>
+            `)
+            }
+        $("#cart").append(`
+            <div class="row" style="clear : both;">
+                <center>
+                    <h2 class="text-info">Total Price : ${totalPrice}</h2>
+                </center>
+            </div>
         `)
-        }
     }
 }
 
 //function to show wishlist
 function showWishlist(){
     console.log(wishlistItems)
-//    $("#wishlist").empty();
-    $("#slideshow").hide();
+    $("#wishlist").empty();
+    //$("#slideshow").hide();
     $("#filters").hide();
     $("#products").hide();
     $("#cart").hide();
@@ -267,4 +318,3 @@ function fixHeader() {
         filter.classList.remove("filter");
     }
 }
-
