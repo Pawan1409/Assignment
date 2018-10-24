@@ -25,7 +25,7 @@
         "id": 2003,
         "category":"Laptops",
         "name": "Dell Inspiron 14 3000 Core i3",
-        "brand":"Dell",
+        "brand":"DELL",
         "RAM": 4,
         "image": "/assets/dell.jpg",
         "processor": "i3",
@@ -208,6 +208,42 @@
         "image": "/assets/mobile.jpg",
         "price": 35999,
         "description": "64 GB ROM, 13 + 13 MP Camera 3000mAh Battery"
+    },
+    {
+        "id": 3001,
+        "category":"Televisions",
+        "name": "MI Led TV 108 CM",
+        "brand":"MI",
+        "image": "/assets/mi.jpg",
+        "price": 21999,
+        "description": "Full HD, 1920x1080 px, 1 Year Warranty"
+    },
+    {
+        "id": 3002,
+        "category":"Televisions",
+        "name": "Samsung LED Tv 108 CM",
+        "brand":"Samsung",
+        "image": "/assets/mi.jpg",
+        "price": 35000,
+        "description": "Full HD, 1920x1080 px, 1 Year Warranty"
+    },
+    {
+        "id": 3003,
+        "category":"Televisions",
+        "name": "Sony Bravia Led TV",
+        "brand":"Sony",
+        "image": "/assets/mi.jpg",
+        "price": 4199,
+        "description": "Full HD, 1920x1080 px, 1 Year Warranty"
+    },
+    {
+        "id": 3004,
+        "category":"Televisions",
+        "name": "Micromax Led TV 32 CM",
+        "brand":"Micromax",
+        "image": "/assets/mi.jpg",
+        "price": 11999,
+        "description": "Full HD, 1920x1080 px, 1 Year Warranty"
     }
 
 ]
