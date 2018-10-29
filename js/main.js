@@ -21,8 +21,9 @@
         $("#cart").hide();
         $("wishlist").hide();
         var arrCategories;
-        $.getJSON("/assets/data.json", function (data) {
-            arrCategories = data;
+        $.getJSON("/assets/server/data.json", function (data) {
+            console.log(data);
+            arrCategories = data.categories;
             for(d of arrCategories){
                 mainCat.push(d.text);
             }
@@ -55,9 +56,9 @@
             `)
         //    document.getElementById("filters").appendChild= itemType+" filters";
         //    document.getElementById("products").appendChild= itemType+" products";
-            $.getJSON("/assets/products.json",function(data){
+            $.getJSON("/assets/server/data.json",function(data){
                 brands=[];
-                for(d of data){
+                for(d of data.products){
                     btnContent = " Add To Cart";
                     if(d.category==itemType){
                         currentItems.push(d);
